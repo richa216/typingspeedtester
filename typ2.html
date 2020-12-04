@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Typing Speed Calculator</title>
+
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+
+	.speed
+	{
+		position: relative;
+		width: 100%;
+		height: 150vh;
+		border: 2px solid blue;
+	}
+	.center
+	{
+		position: absolute;
+		
+		left: 50%;
+		transform: translate(-50%,5%);
+		text-align: center;
+	}
+	.btn
+	{
+
+		width: 20%;
+		height: 5vw;
+		border-radius: 10px;
+		border: none;
+		background-color: black;
+		color: white;
+		cursor: pointer;
+		outline: none;
+		margin-left: 53%;
+		font-size: 3vw;
+		margin-top: 3%;
+		box-shadow:  10px 10px 5px  #009999;
+
+	}
+	.btn:hover
+	{
+		background-color: #009999;
+		box-shadow:  10px 10px 5px black;
+	}
+	.speed h1
+	{
+		background-color: black;
+		color: white;
+		text-align: center;
+		line-height: 100px;
+		font-size: 4vw;
+		text-transform: uppercase;
+		text-shadow: 2px 2px 3px white;
+		
+
+	}
+	.goal
+	{
+		background-color: #009999;
+		text-align: center;
+		font-size: 2vw;
+		padding-left: 20%;
+		padding-right: 20%;
+		padding-top: 3%;
+		padding-bottom: 3%;
+		color: white;
+
+	}
+	#text
+	{
+		border:15px solid grey;
+		border-radius: 20px;
+		outline-offset: -20px;
+		padding: 10px;
+		font-size: 1vw;
+		text-align: center;
+		resize: none;
+		
+
+	}
+	.clock 
+	{
+		display: flex;
+
+
+	}
+    .clock h1
+    {
+    	color: black;
+    	background-color: white;
+    }
+</style>
+
+</head>
+<body>
+
+
+	<div class="speed">
+		<h1>Test Your typing speed</h1>
+		<div class="goal">This is a typing test. Your goal is to duplicate the provided text, EXACTLY, in the field below. The timer starts when you start typing, and only stops when you match this text exactly. Good Luck!</div>
+		<div class="center">
+			
+			<h2 id="words"></h2>
+			<textarea id="text" cols="100" rows="20" onkeyup="equal();"></textarea>
+			<div class="clock">
+				<h1>
+					<span id="hour">00</span>:
+					<span id="min">00</span>:
+					<span id="sec">00</span>
+				</h1>
+			
+			<button class="btn" id="sbtn">Ready</button></div>
+			
+		</div>
+		
+	</div>
+
+
+
+
+	<script>
+		var startTime;
+		var endTime;
+		var typingspeed;
+		var output ;
+		var c;
+		var wordc=document.getElementById('words');
+		var para=document.getElementById('text');
+		
+		var arr=['JavaScript is a scripting or programming language that allows you to implement complex features on web pages.','every time a web page does more than just sit there and display static information for you to look at — displaying timely content updates, interactive maps, animated 2D/3D graphics, scrolling video jukeboxes, etc.','you can bet that JavaScript is probably involved.','It is the third layer of the layer cake of standard web technologies.','two of which (HTML and CSS) we have covered in much more detail in other parts of the Learning Area.'];
+
+
+var sect=0;
+var mint=0;
+var hourt=0;
+var sec=0;
+var min=0;
+var hour=0;
+var i;
+
+
+function start()
+{
+	x = setInterval(timer,10);
+
+}
+function stop()
+{
+	clearInterval(x);
+
+}
+
+function timer()
+{
+	hourt = ct(hour);
+	mint = ct(min);
+	sect = ct(sec);
+	sec = ++sec;
+
+	if(sec == 60)
+	{
+		min = ++min;
+		sec = 0;
+	}
+	if(min == 60)
+	{
+		
+		hour = ++hour;
+		min=0;
+	}
+
+	document.getElementById('hour').innerHTML = hourt;
+	document.getElementById('min').innerHTML = mint;
+	document.getElementById('sec').innerHTML = sect;
+}
+
+function ct(i)
+{
+   if(i<10)
+   {
+   	i = "0"+i;
+   }
+
+   return i;
+}
+
+
+       
+	var count1 = (str) => {
+		output = str.split(" ").length;
+		return output;
+	}
+
+	var compareWords= (str1,str2) => {
+		var str1 = str1.split(" ");
+		var str2 = str2.split(" ");
+		var i=0;
+		str1.forEach(function(item,index){
+
+
+			if(item == str2[index])
+			{
+				i++;
+				console.log(item)
+			}
+		
+
+		})
+
+
+
+		wrongwords = (str2.length - i);
+	}
+
+
+function equal()
+{
+         var v= wordc.innerText;
+         var u=para.value;
+        console.log(u);
+    
+          var cmp=v.substring(0,u.length);
+          console.log(cmp)
+          if(cmp==u)
+          {
+          	document.getElementById('text').style.borderColor = 'blue';
+          }
+          else
+          {
+          	document.getElementById('text').style.borderColor = 'red';
+          }
+
+     	if(para.value==arr[val])
+     	{
+     		stop();
+     	}
+     }
+
+	   
+
+	
+	var val = Math.floor(Math.random()*arr.length);
+		
+
+
+	sbtn.addEventListener('click',function()
+		{ 
+
+			if(this.innerText=='Ready')
+			{   
+				start();
+			    document.getElementById('words').innerText = arr[val];
+
+		        let date = new Date();
+			    startTime = date.getTime()
+			    document.getElementById('sbtn').innerText = "Done";
+		    }
+
+
+		    else if(this.innerText == 'Done')
+		    {
+
+
+		    	date = new Date();
+		    	endTime = date.getTime();
+		    	var totaltime = (endTime-startTime)/1000;
+		    	console.log(totaltime)
+		    	var x = para.value;
+			    var c = count1(x);
+			    console.log(c);
+			    console.log();
+
+			    var speed1 = Math.floor((c/totaltime)*60);
+			    console.log(speed1)
+			    //compareWords(wordc.innerText,x);
+			    var msg = "your speed is " +speed1+ " words per minute"
+			    wordc.innerText = msg;
+			     document.getElementById('sbtn').innerText = "Reset";
+			     para.value=" ";
+
+			  
+
+	  		}
+	  		else if(this.innerText == 'Reset')
+	  		{
+	  			location.reload();
+	  		}
+	    }
+	    )
+
+
+
+
+	
+	</script>
+
+</body>
+</html>
