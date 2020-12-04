@@ -16,7 +16,7 @@
 		position: relative;
 		width: 100%;
 		height: 150vh;
-		border: 2px solid blue;
+		
 	}
 	.center
 	{
@@ -207,9 +207,15 @@ function ct(i)
 			if(item == str2[index])
 			{
 				i++;
-				console.log(item)
 			}
-		
+			else
+			{
+				document.getElementById('text').style.borderColor = 'red';
+			}
+			if(str1[i]==str2[i])
+			{
+				stop();
+			}
 
 		})
 
@@ -219,28 +225,43 @@ function ct(i)
 	}
 
 
+function compareWords(st1,st2)
+{
+		var st1 = st1.split(" ");
+		var st2 = st2.split(" ");
+		var i=0;
+		str1.forEach(function(item,index){
+			if(item == st2[index])
+			{
+				i++;
+				document.getElementById('text').style.borderColor = 'blue';
+
+			}
+			else
+			{
+				document.getElementById('text').style.borderColor = 'red';
+			}
+			// if(st1[i]==st2[i])
+			// {
+			// 	stop();
+			// }
+
+})
+}
 function equal()
 {
-         var v= wordc.innerText;
-         var u=para.value;
-        console.log(u);
-    
-          var cmp=v.substring(0,u.length);
-          console.log(cmp)
-          if(cmp==u)
-          {
-          	document.getElementById('text').style.borderColor = 'blue';
-          }
-          else
-          {
-          	document.getElementById('text').style.borderColor = 'red';
-          }
+	if(para.value==arr[val])
+	{
+		stop();
+		document.getElementById('text').style.borderColor = 'blue';
+      
+	}
+	else
+	{
+		document.getElementById('text').style.borderColor = 'red';
+	}
 
-     	if(para.value==arr[val])
-     	{
-     		stop();
-     	}
-     }
+}
 
 	   
 
@@ -278,7 +299,7 @@ function equal()
 
 			    var speed1 = Math.floor((c/totaltime)*60);
 			    console.log(speed1)
-			    //compareWords(wordc.innerText,x);
+			    //msg+=compareWords(wordc.innerText,x);
 			    var msg = "your speed is " +speed1+ " words per minute"
 			    wordc.innerText = msg;
 			     document.getElementById('sbtn').innerText = "Reset";
