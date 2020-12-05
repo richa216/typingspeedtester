@@ -15,8 +15,8 @@
 	{
 		position: relative;
 		width: 100%;
-		height: 150vh;
-		
+		height: 100vh;
+		background-color: #161624;
 	}
 	.center
 	{
@@ -51,7 +51,7 @@
 	.speed h1
 	{
 		background-color: black;
-		color: white;
+		color: #e94a0f;
 		text-align: center;
 		line-height: 100px;
 		font-size: 4vw;
@@ -74,13 +74,14 @@
 	}
 	#text
 	{
-		border:15px solid grey;
+		border:15px solid #323232;
 		border-radius: 20px;
 		outline-offset: -20px;
 		padding: 10px;
 		font-size: 1vw;
 		text-align: center;
 		resize: none;
+
 		
 
 	}
@@ -92,8 +93,10 @@
 	}
     .clock h1
     {
-    	color: black;
-    	background-color: white;
+    	color: white;
+    	background-color:#161624;
+    	text-shadow: none;
+
     }
 </style>
 
@@ -107,7 +110,7 @@
 		<div class="center">
 			
 			<h2 id="words"></h2>
-			<textarea id="text" placeholder="Start your typing here........" cols="100" rows="20" onkeyup="equal();"></textarea>
+			<textarea id="text" placeholder="Start your typing here............." cols="100" rows="20" onkeyup="equal();"></textarea>
 			<div class="clock">
 				<h1>
 					<span id="hour">00</span>:
@@ -193,7 +196,7 @@ function ct(i)
 
        
 	var count1 = (str) => {
-		outborder: 2px solid blue;put = str.split(" ").length;
+		output = str.split(" ").length;
 		return output;
 	}
 
@@ -247,7 +250,7 @@ function equal()
 	
 	var val = Math.floor(Math.random()*arr.length);
 		
-  text.addEventListener('touchscreen',equal())
+
 
 	sbtn.addEventListener('click',function()
 		{ 
